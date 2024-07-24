@@ -37,7 +37,7 @@ export type Rules = {
   [k in keyof Config['rules']]: Config['rules'][k]
 }
 
-export type FileExtension = 'js' | 'ts' | 'cjs' | 'mjs' | 'jsx' | 'tsx' | 'vue'
+export type FileExtension = 'js' | 'ts' | 'cjs' | 'mjs' | 'jsx' | 'tsx' | 'uts' | 'vue' | 'nvue' | 'uvue'
 
 export type StringObject = {
   [key: string]: string | StringObject
@@ -89,6 +89,7 @@ export type Config = {
   rules: {
     js: Rule
     ts: Rule
+    uts: Rule
     cjs: Rule
     mjs: Rule
     tsx: Rule & {
@@ -98,6 +99,12 @@ export type Config = {
       functionSnippets: string
     }
     vue: Rule & {
+      tagOrder: TagOrder
+    }
+    nvue: Rule & {
+      tagOrder: TagOrder
+    }
+    uvue: Rule & {
       tagOrder: TagOrder
     }
   }

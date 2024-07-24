@@ -23,12 +23,15 @@ function transform(
         parse: initParse(),
       })
     case 'ts':
+    case 'uts':
     case 'tsx':
       return transformJs(code, {
         rule: rules[ext],
         parse: initParse([[presetTypescript, { isTSX: true, allExtensions: true }]]),
       })
     case 'vue':
+    case 'nvue':
+    case 'uvue':
       // 规则functionName废弃掉，使用functionNameInScript代替
       rules[ext].functionName = rules[ext].functionNameInScript ?? ''
       return transformVue(code, {
