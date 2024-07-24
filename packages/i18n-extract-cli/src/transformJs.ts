@@ -153,14 +153,14 @@ function pushStatement(
 
 function transformJs(code: string, options: transformOptions): GeneratorResult {
   const { rule } = options
-  const { caller, functionName, customizeKey, importDeclaration, functionSnippets, forceImport } =
+  const { caller, functionName, customizeKey, importDeclaration, functionSnippets, forceImport, customizeExpression } =
     rule
   let hasImportI18n = false // 文件是否导入过i18n
   let hasTransformed = false // 文件里是否存在中文转换，有的话才有必要导入i18n
 
   function getCallExpression(identifier: string, quote = "'"): string {
     const callerName = caller ? caller + '.' : ''
-    const expression = `${callerName}${functionName}(${quote}${identifier}${quote})`
+    const expression = customizeExpression?.(identifier) ?? `${callerName}${functionName}(${quote}${identifier}${quote})`
     return expression
   }
 
